@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bangnv.talkai.R
-import com.bangnv.talkai.databinding.ItemTalkRightBinding
 import com.bangnv.talkai.databinding.ItemTalkLeftBinding
+import com.bangnv.talkai.databinding.ItemTalkRightBinding
 import com.bangnv.talkai.models.offline.ChatMessage
+import com.bangnv.talkai.utils.GlobalFunction
+import io.noties.markwon.Markwon
 
 class TalkAdapter(private val aiType: Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -27,11 +29,14 @@ class TalkAdapter(private val aiType: Int) : RecyclerView.Adapter<RecyclerView.V
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_USER -> {
-                val binding = ItemTalkRightBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding =
+                    ItemTalkRightBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 UserViewHolder(binding)
             }
+
             else -> {
-                val binding = ItemTalkLeftBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding =
+                    ItemTalkLeftBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 AIViewHolder(binding)
             }
         }
@@ -51,19 +56,43 @@ class TalkAdapter(private val aiType: Int) : RecyclerView.Adapter<RecyclerView.V
         return if (messages[position].isUser) VIEW_TYPE_USER else VIEW_TYPE_AI
     }
 
-    inner class UserViewHolder(private val binding: ItemTalkRightBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class UserViewHolder(private val binding: ItemTalkRightBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(message: ChatMessage) {
-            binding.messageTextView.text = message.content
+            // Sử dụng Markwon để render Markdown
+            val markwon = Markwon.create(binding.root.context)
+            markwon.setMarkdown(binding.messageTextView, message.content)
+
+            // Thêm sự kiện click để sao chép văn bản
+            binding.messageTextView.setOnLongClickListener {
+                GlobalFunction.copyTextToClipboard(
+                    binding.root.context,
+                    message.content
+                ) // Sao chép văn bản vào clipboard
+                true // Trả về true để ngừng sự kiện click
+            }
         }
     }
 
-    inner class AIViewHolder(private val binding: ItemTalkLeftBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class AIViewHolder(private val binding: ItemTalkLeftBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(message: ChatMessage) {
-            binding.aiMessageTextView.text = message.content
-            // Change icon
+            // Sử dụng Markwon để render Markdown
+            val markwon = Markwon.create(binding.root.context)
+            markwon.setMarkdown(binding.aiMessageTextView, message.content)
+
+            // Thêm sự kiện click để sao chép văn bản
+            binding.aiMessageTextView.setOnLongClickListener {
+                GlobalFunction.copyTextToClipboard(
+                    binding.root.context,
+                    message.content
+                ) // Sao chép văn bản vào clipboard
+                true // Trả về true để ngừng sự kiện click
+            }
+
+            // Thay đổi icon dựa trên `aiType`
             val icon = if (aiType == 1) R.drawable.ic_gemini else R.drawable.ic_chatgpt
             binding.aiIcon.setImageResource(icon)
         }
     }
 }
-

@@ -76,4 +76,6 @@ dependencies {
     implementation(libs.logging.interceptor)
 
     implementation(libs.generativeai)
+
+    implementation(libs.markdown)
 }

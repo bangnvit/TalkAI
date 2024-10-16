@@ -24,8 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recyclerView"
-        app:layout_constraintBottom_toTopOf="@id/messageLayout"
-        android:layout_margin="8dp">
+        app:layout_constraintBottom_toTopOf="@id/messageLayout">
 
         <RadioButton
             android:id="@+id/rb_gemini"

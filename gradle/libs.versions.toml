@@ -19,6 +19,8 @@ okhttp = "4.11.0"
 
 # Gemini AI
 generativeai = "0.9.0"
+# Markdown
+markdown = "4.6.2"
 # Save data Navigation
 navSafeArgsKotlin = "2.8.2"
 # Protect Keys
@@ -43,6 +45,8 @@ converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", ve
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 generativeai = { group = "com.google.ai.client.generativeai", name = "generativeai", version.ref = "generativeai" }
+
+markdown = { group = "io.noties.markwon", name = "core", version.ref = "markdown" }
 
 
 [plugins]

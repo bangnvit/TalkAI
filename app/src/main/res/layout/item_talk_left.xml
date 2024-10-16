@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10dp"
         android:background="@drawable/bg_item_talk_left"
+        android:focusable="true"
         android:paddingHorizontal="@dimen/_12dp"
         android:paddingVertical="@dimen/_8dp"
         android:textColor="@color/black"

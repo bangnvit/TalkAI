@@ -14,6 +14,7 @@ import com.bangnv.talkai.data.repositories.ChatGPTRepository
 import com.bangnv.talkai.data.repositories.GeminiRepository
 import com.bangnv.talkai.data.repositories.factories.TalkViewModelFactory
 import com.bangnv.talkai.databinding.FragmentTalkBinding
+import com.bangnv.talkai.utils.GlobalFunction
 import kotlinx.coroutines.launch
 
 class TalkFragment : Fragment() {
@@ -59,6 +60,7 @@ class TalkFragment : Fragment() {
 
     private fun setupListeners() {
         binding.btnSend.setOnClickListener {
+            GlobalFunction.hideSoftKeyboard(requireActivity())
             val message = binding.edtMessage.text.toString()
             val useGemini = binding.rgAiSelection.checkedRadioButtonId == R.id.rb_gemini
 
