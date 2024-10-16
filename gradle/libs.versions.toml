@@ -15,7 +15,7 @@ navigationUiKtx = "2.6.0"
 
 # Network
 retrofit = "2.9.0"
-okhttp = "4.9.3"
+okhttp = "4.11.0"
 
 # Gemini AI
 generativeai = "0.9.0"
