@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Talk AI</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_talk">Talk</string>
+    <string name="title_vocabulary">Vocabulary</string>
+    <string name="title_account">Account</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_message">Input message</string>
+    <string name="descrip_microphone_icon">Microphone Icon</string>
+    <string name="descrip_send_icon">Send Icon</string>
+    <string name="descrip_ai_icon">AI Icon</string>
+    <string name="str_gemini">Gemini</string>
+    <string name="str_chatgpt">ChatGPT</string>
+    <string name="str_ex_item_left">Extension functions add functionality to existing classes without modifying them, making code more concise and reusable.</string>
+    <string name="str_ex_item_right">What are Extension Functions in Kotlin?</string>
+</resources>
