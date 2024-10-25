@@ -13,7 +13,7 @@ import io.noties.markwon.Markwon
 
 class TalkAdapter(private val aiType: Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var messages = listOf<ChatMessage>()
+    private var messages: List<ChatMessage> = emptyList() // Initialize with an empty list
 
     companion object {
         private const val VIEW_TYPE_USER = 0
@@ -27,18 +27,19 @@ class TalkAdapter(private val aiType: Int) : RecyclerView.Adapter<RecyclerView.V
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context) // Move LayoutInflater to a variable
         return when (viewType) {
             VIEW_TYPE_USER -> {
-                val binding =
-                    ItemTalkRightBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val binding = ItemTalkRightBinding.inflate(inflater, parent, false)
                 UserViewHolder(binding)
             }
 
-            else -> {
-                val binding =
-                    ItemTalkLeftBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            VIEW_TYPE_AI -> {
+                val binding = ItemTalkLeftBinding.inflate(inflater, parent, false)
                 AIViewHolder(binding)
             }
+
+            else -> throw IllegalArgumentException("Invalid view type") // Ensure all cases are handled
         }
     }
 
@@ -56,43 +57,40 @@ class TalkAdapter(private val aiType: Int) : RecyclerView.Adapter<RecyclerView.V
         return if (messages[position].isUser) VIEW_TYPE_USER else VIEW_TYPE_AI
     }
 
+    // ViewHolder for user messages
     inner class UserViewHolder(private val binding: ItemTalkRightBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(message: ChatMessage) {
-            // Sử dụng Markwon để render Markdown
-            val markwon = Markwon.create(binding.root.context)
+            val markwon = Markwon.create(binding.root.context) // Render markdown content
             markwon.setMarkdown(binding.messageTextView, message.content)
 
-            // Thêm sự kiện click để sao chép văn bản
+            // Add long click event to copy text to clipboard
             binding.messageTextView.setOnLongClickListener {
-                GlobalFunction.copyTextToClipboard(
-                    binding.root.context,
-                    message.content
-                ) // Sao chép văn bản vào clipboard
-                true // Trả về true để ngừng sự kiện click
+                GlobalFunction.copyTextToClipboard(binding.root.context, message.content)
+                true // Return true to consume the event
             }
         }
     }
 
+    // ViewHolder for AI messages
     inner class AIViewHolder(private val binding: ItemTalkLeftBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(message: ChatMessage) {
-            // Sử dụng Markwon để render Markdown
-            val markwon = Markwon.create(binding.root.context)
+            val markwon = Markwon.create(binding.root.context) // Render markdown content
             markwon.setMarkdown(binding.aiMessageTextView, message.content)
 
-            // Thêm sự kiện click để sao chép văn bản
+            // Add long click event to copy text to clipboard
             binding.aiMessageTextView.setOnLongClickListener {
-                GlobalFunction.copyTextToClipboard(
-                    binding.root.context,
-                    message.content
-                ) // Sao chép văn bản vào clipboard
-                true // Trả về true để ngừng sự kiện click
+                GlobalFunction.copyTextToClipboard(binding.root.context, message.content)
+                true // Return true to consume the event
             }
 
-            // Thay đổi icon dựa trên `aiType`
-            val icon = if (aiType == 1) R.drawable.ic_gemini else R.drawable.ic_chatgpt
-            binding.aiIcon.setImageResource(icon)
+            // Set icon based on `aiType`
+            val iconResId = when (aiType) {
+                1 -> R.drawable.ic_gemini
+                else -> R.drawable.ic_chatgpt
+            }
+            binding.aiIcon.setImageResource(iconResId)
         }
     }
 }

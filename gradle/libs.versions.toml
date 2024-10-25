@@ -10,19 +10,24 @@ material = "1.12.0"
 constraintlayout = "2.1.4"
 lifecycleLivedataKtx = "2.8.6"
 lifecycleViewmodelKtx = "2.8.6"
-navigationFragmentKtx = "2.8.2"
-navigationUiKtx = "2.8.2"
+navigationFragmentKtx = "2.8.3"
+navigationUiKtx = "2.8.3"
 
 # Network
 retrofit = "2.9.0"
+# Moshi
+moshi = "1.15.0"
+
 okhttp = "4.11.0"
 
 # Gemini AI
 generativeai = "0.9.0"
 # Markdown
 markdown = "4.6.2"
+
+circleimageview = "3.1.0"
 # Save data Navigation
-navSafeArgsKotlin = "2.8.2"
+navSafeArgsKotlin = "2.8.3"
 # Protect Keys
 googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
 
@@ -41,12 +46,18 @@ androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navi
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+moshi-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
+moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
+moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
+#moshi-adapter = { group = "com.squareup.moshi", name = "moshi-adapter", version.ref = "moshi" }
+
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 generativeai = { group = "com.google.ai.client.generativeai", name = "generativeai", version.ref = "generativeai" }
 
 markdown = { group = "io.noties.markwon", name = "core", version.ref = "markdown" }
+
+circleimageview = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview" }
 
 
 [plugins]

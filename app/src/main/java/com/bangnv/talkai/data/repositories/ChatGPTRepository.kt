@@ -24,7 +24,8 @@ class ChatGPTRepository {
 
             if (response.isSuccessful) {
                 val chatResponse: ChatGPTResponse? = response.body()
-                chatResponse?.choices?.firstOrNull()?.message?.content ?: "Error: isSuccessful but null"
+                chatResponse?.choices?.firstOrNull()?.message?.content
+                    ?: "Error: isSuccessful but null"
             } else {
                 "Error: response is not successful. Status Code: ${response.code()}"
             }

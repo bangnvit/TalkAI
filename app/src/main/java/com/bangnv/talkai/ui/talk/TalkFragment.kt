@@ -27,11 +27,11 @@ class TalkFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val chatGPTRepository = ChatGPTRepository()
         val geminiRepository = GeminiRepository()
         val viewModelFactory = TalkViewModelFactory(chatGPTRepository, geminiRepository)
-        talkViewModel = ViewModelProvider(this, viewModelFactory).get(TalkViewModel::class.java)
+        talkViewModel = ViewModelProvider(this, viewModelFactory)[TalkViewModel::class.java]
 
         _binding = FragmentTalkBinding.inflate(inflater, container, false)
 

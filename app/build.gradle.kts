@@ -71,11 +71,15 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.retrofit)
-    implementation(libs.converter.gson)
+    implementation(libs.moshi.converter)
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
 
     implementation(libs.generativeai)
 
     implementation(libs.markdown)
+
+    implementation(libs.circleimageview)
 }
